@@ -1,0 +1,558 @@
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Christopher S Magirl</origin>
+        <origin>Christopher A Curran</origin>
+        <origin>Robert C Hilldale</origin>
+        <pubdate>2018</pubdate>
+        <title>Daily sediment loads during and after dam removal in the Elwha River, Washington, 2011 to 2016</title>
+        <geoform>Comma-separated values</geoform>
+        <serinfo>
+          <sername>data release</sername>
+          <issue>doi:10.5066/F7PG1QWC</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Pacific Coastal and Marine Science Center, Santa Cruz, California</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.5066/F7PG1QWC</onlink>
+        <onlink>https://www.sciencebase.gov/catalog/file/get/5a25e9f2e4b03852baf67f06</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Andrew C. Ritchie</origin>
+            <origin>Christopher A Curran</origin>
+            <origin>Christopher S Magirl</origin>
+            <origin>Jennifer A Bountry</origin>
+            <origin>Robert C Hilldale</origin>
+            <origin>Timothy J Randle</origin>
+            <origin>Jefferey J Duda</origin>
+            <pubdate>2018</pubdate>
+            <title>Data in support of 5-year sediment budget and morphodynamic analysis of Elwha River following dam removals</title>
+            <serinfo>
+              <sername>data release</sername>
+              <issue>doi:10.5066/F7PG1QWC</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Pacific Coastal and Marine Science Center, Santa Cruz, California</pubplace>
+              <publish>U.S. Geological Survey</publish>
+            </pubinfo>
+            <onlink>https://doi.org/10.5066/F7PG1QWC</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Daily values of discharge and sediment loads were measured and estimated at U.S. Geological Survey gaging station 12046260, on the Elwha River at the diversion near Port Angeles, Washington. Daily data are reported from September 15, 2011 to September 30, 2016. Specific data include (1) date; (2) discharge; (3) suspended-sediment concentration and one standard-deviation bounds; (4) percentage of fine-grained particles (silts and clays) in suspension; (5) loads of total suspended-sediment, fine-grained particles in suspension, and sand in suspension; (6) gauged bedload for particles between 2-16 mm and greater than 16 mm; and (7) estimated bedload for particles smaller than 2 mm.</abstract>
+      <purpose>Data were collected to quantify the flux of water, suspended sediment, and bedload sediment at the U.S. Geological Survey gaging station 12046260, Elwha River at Diversion Near Port Angeles, WA. The gaging station 12046260 is downstream of the 2011-2014 dam removal of two large dams on the Elwha River. These discharge and sediment flux data were combined with morphological data collected by collaborative researchers and combined into a total river sediment budget during and after dam removal.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20110915</begdate>
+          <enddate>20160930</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-123.601338</westbc>
+        <eastbc>-123.548927</eastbc>
+        <northbc>48.151755</northbc>
+        <southbc>48.001990</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>USGS Metadata Identifier</themekt>
+        <themekey>USGS:5a25e9f2e4b03852baf67f06</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>field inventory and monitoring</themekey>
+        <themekey>sediment transport</themekey>
+        <themekey>stream discharge</themekey>
+      </theme>
+      <theme>
+        <themekt>Marine Realms Information Bank (MRIB) keywords</themekt>
+        <themekey>river channel</themekey>
+        <themekey>river bank</themekey>
+        <themekey>sediment deposition</themekey>
+      </theme>
+      <theme>
+        <themekt>Data Categories for Marine Planning</themekt>
+        <themekey>Substrate</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>inlandWaters</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>U.S. Geological Survey</themekey>
+        <themekey>USGS</themekey>
+        <themekey>Coastal and Marine Geology</themekey>
+        <themekey>CMGP</themekey>
+        <themekey>Pacific Coastal and Marine Science Center</themekey>
+        <themekey>PCMSC</themekey>
+        <themekey>U.S. Bureau of Reclamation</themekey>
+        <themekey>USBR</themekey>
+      </theme>
+      <place>
+        <placekt>Geographic Names Index System (GNIS)</placekt>
+        <placekey>Elwha River</placekey>
+        <placekey>Elwha Dam (historical)</placekey>
+        <placekey>Glines Canyon Dam (historical)</placekey>
+        <placekey>Olympic National Park</placekey>
+        <placekey>Lake Aldwell (historical)</placekey>
+        <placekey>Lake Mills (historical)</placekey>
+        <placekey>State of Washington</placekey>
+      </place>
+    </keywords>
+    <accconst>none</accconst>
+    <useconst>USGS-authored or produced data and information are in the public domain from the U.S. Government and are freely redistributable with proper metadata and source attribution. Please recognize and acknowledge the U.S. Geological Survey (USGS), Environmental Protection Agency, National Park Service, and the U.S. Bureau of Reclamation as the originators of the dataset and in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Christopher S Magirl</cntper>
+          <cntorg>U.S. Geological Survey, Arizona Water Science Center</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>520 N Park Ave, Suite 221</address>
+          <city>Tucson</city>
+          <state>Arizona</state>
+          <postal>85719</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>520-670-3315</cntvoice>
+        <cntemail>magirl@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Data collection was funded by U.S. Geological Survey, Environmental Protection Agency, National Park Service, and U.S. Bureau of Reclamation</datacred>
+    <crossref>
+      <citeinfo>
+        <origin>Robert C Hilldale</origin>
+        <origin>Wayne O Carpenter</origin>
+        <origin>Bradley Goodwiller</origin>
+        <origin>James P Chambers</origin>
+        <origin>Timothy J Randle</origin>
+        <pubdate>2015</pubdate>
+        <title>Installation of Impact Plates to Continuously Measure Bed Load: Elwha River, Washington, USA.</title>
+        <pubinfo>
+          <pubplace>online</pubplace>
+          <publish>Journal of Hydraulic Engineering, 141(3)</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.1061/(ASCE)HY.1943-7900.0000975</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Christopher S. Magirl</origin>
+        <origin>Robert C. Hilldale</origin>
+        <origin>Christopher A. Curran</origin>
+        <origin>Jeffrey J. Duda</origin>
+        <origin>Timothy D. Straub</origin>
+        <origin>Marian Domanski</origin>
+        <origin>James R. Foreman</origin>
+        <pubdate>2015</pubdate>
+        <title>Large-scale dam removal on the Elwha River, Washington, USA: Fluvial sediment load</title>
+        <pubinfo>
+          <pubplace>http://www.sciencedirect.com</pubplace>
+          <publish>Geomorphology, v. 246, p. 669-686</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.1016/j.geomorph.2014.12.032</onlink>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>All data fall within expected ranges.</attraccr>
+    </attracc>
+    <logic>All data fall within expected ranges.</logic>
+    <complete>Data set is considered complete for the information presented, as described in the abstract. Users are advised to read the rest of the metadata record carefully for additional details.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>No formal positional accuracy tests were conducted</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>No formal positional accuracy tests were conducted</vertaccr>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>15-minute stage data and discharge rating curves from McDonald Bridge gage (USGS Gage 12045500) were used with a routing time and precipitation volume-based adjustment model to derive daily discharge estimates for the diversion weir reported here. Daily records of suspended-sediment concentration (SSC) were calculated using a combination of standard flow-weighted suspended-sediment samples, automated point-sampler daily composite samples, and three sediment-surrogate instruments--two optical turbidimeters and one acoustic Doppler velocity meter (ADVM)--using established techniques (Magirl and others, 2015). Daily bedload sediment transport values for three size fractions were calculated using a combination of steel bedload-impact plates and physical bedload sampling during November, 2012; March, May, and June 2013; and April 2014 at the Diversion Weir gauge (Magirl and others, 2015; Hilldale and others, 2015). These techniques estimated the proportion of bedload in the &gt; 16mm and the 2-16mm size classes, but did not capture bedload transport of particles smaller than 2 mm, which were estimated from a combination of regional and comparative studies in high-sediment load rivers--including other dam removal studies--using constant ratios of measured total bedload to total sediment discharge of 15 percent for water year 2012 and 25 percent for later years.</procdesc>
+        <procdate>2017</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Corrected name of theme keyword thesaurus from ISO 19115 Topic Categories to Category.</procdesc>
+        <procdate>20180717</procdate>
+        <proccont>
+          <cntinfo>
+            <cntperp>
+              <cntper>Susan A Cochran</cntper>
+              <cntorg>U.S. Geological Survey, Pacific Coastal and Marine Science Center</cntorg>
+            </cntperp>
+            <cntaddr>
+              <addrtype>mailing and physical</addrtype>
+              <address>2885 Mission St.</address>
+              <city>Santa Cruz</city>
+              <state>CA</state>
+              <postal>95060</postal>
+              <country>United States</country>
+            </cntaddr>
+            <cntvoice>831-460-7545</cntvoice>
+            <cntemail>scochran@usgs.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Edited metadata to add keywords section with USGS persistent identifier as theme keyword. No data were changed.</procdesc>
+        <procdate>20201019</procdate>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>U.S. Geological Survey</cntorg>
+              <cntper>VeeAnn A. Cross</cntper>
+            </cntorgp>
+            <cntpos>Marine Geologist</cntpos>
+            <cntaddr>
+              <addrtype>Mailing and Physical</addrtype>
+              <address>384 Woods Hole Road</address>
+              <city>Woods Hole</city>
+              <state>MA</state>
+              <postal>02543-1598</postal>
+            </cntaddr>
+            <cntvoice>508-548-8700 x2251</cntvoice>
+            <cntfax>508-457-2310</cntfax>
+            <cntemail>vatnipp@usgs.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <indspref>Data were collected at USGS gaging station 12046260, on Elwha River, northern Washington State, on the right bank 3.5 miles upstream from the river mouth (latitude: 48.11172, longitude: -123.55151).</indspref>
+    <direct>Point</direct>
+  </spdoinfo>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Elwha_DailySedimentLoads_2011to2016.csv</enttypl>
+        <enttypd>Suspended sediment, discharge, and bedload data.</enttypd>
+        <enttypds>Producer defined</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Day</attrlabl>
+        <attrdef>Date of the daily values reported in columns.</attrdef>
+        <attrdefs>Producer defined.</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>09/15/2011</rdommin>
+            <rdommax>09/30/2016</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily Discharge (m3/s)</attrlabl>
+        <attrdef>Daily discharge</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>6.330321507</rdommin>
+            <rdommax>399.501183</rdommax>
+            <attrunit>cubic meters per second</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily SSC (mg/L)</attrlabl>
+        <attrdef>Daily suspended-sediment concentration; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.2274661</rdommin>
+            <rdommax>13819.789500</rdommax>
+            <attrunit>milligrams per liter</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Upper SSC bound (+1SD)</attrlabl>
+        <attrdef>Upper uncertainty bound, one standard deviation, of suspended-sediment concentration measurement; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.288613508</rdommin>
+            <rdommax>17224.300000</rdommax>
+            <attrunit>milligrams per liter</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Lower SSC bound (-1SD)</attrlabl>
+        <attrdef>Lower uncertainty bound, one standard deviation, of suspended-sediment concentration measurement; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.179273730</rdommin>
+            <rdommax>12133.928400</rdommax>
+            <attrunit>milligrams per liter</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Ave fraction fines (based on two turbidimeters)</attrlabl>
+        <attrdef>Average fraction of fine-grained particles (silts and clays) in suspension based on the data of two turbidimeters; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.41</rdommin>
+            <rdommax>0.994</rdommax>
+            <attrunit>fraction</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily Suspended-Sediment Load (tonnes)</attrlabl>
+        <attrdef>Daily suspended-sediment load</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.1</rdommin>
+            <rdommax>429806.7</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily SS Load of fines (tonnes)</attrlabl>
+        <attrdef>Daily suspended-sediment load of fine-grained particles (silts and clays)</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.1</rdommin>
+            <rdommax>269484.4</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily SS Load of sand (tonnes)</attrlabl>
+        <attrdef>Daily suspended-sediment load of sand-sized particles</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>160322.3</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Remarks</attrlabl>
+        <attrdef>Used to flag days when sensor failure precluded direct sediment measurement at the gage. If data flagged, "Estimated," the suspended-sediment data for that day were estimated using linear interpolation for day before and after sensor failure when sediment data were measured.</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>NA</edomv>
+            <edomvd>Flag to indicate whether data were interpolated; &#8220;NA&#8221; means data were not interpolated</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Estimated</edomv>
+            <edomvd>Flag to indicate whether data were interpolated; &#8220;estimated&#8221; means data were interpolated</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily Total gauged &gt; 2-mm bedload (tonnes)</attrlabl>
+        <attrdef>Daily total gauged bedload of particles larger than 2 mm; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.000000</rdommin>
+            <rdommax>27813.617110</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily gauged bedload for 2-16mm particles (tonnes)</attrlabl>
+        <attrdef>Daily total gauged bedload of particles larger than 2 mm and smaller than 16 mm; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.000000</rdommin>
+            <rdommax>22023.800000</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Daily gauged bedload for &gt;16mm particles (tonnes)</attrlabl>
+        <attrdef>Daily total gauged bedload of particles larger than 16 mm; NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.000000</rdommin>
+            <rdommax>6536.200022</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Estimated daily ungauged bedload (tonnes)</attrlabl>
+        <attrdef>Estimated ungauged portion of particles in bedload flux that are less than 2 mm. Estimate is based on an assumed bedload-to-total-load ratio of 15 percent in year 1 of dam removal and 25 percent in years 2-5 of dam removal. NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>-7710.000000</rdommin>
+            <rdommax>104443.874200</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Total sediment discharge (tonnes)</attrlabl>
+        <attrdef>Total daily sediment discharge. Included gauged suspended-sediment load, gauged bedload, and estimated bedload</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.100000</rdommin>
+            <rdommax>466989.066700</rdommax>
+            <attrunit>tonnes</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Release period</attrlabl>
+        <attrdef>Additional information flag from Magirl and others (2015) describing 5 unique stages of sediment-release conditions during the first two years of dam removal. NA means no direct value was measured</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>early removal</edomv>
+            <edomvd>"early removal," is early period of dam removal when relatively little sediment was transported</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Lake Aldwell release</edomv>
+            <edomvd>"Lake Aldwell release," was the period when former Lake Aldwell reservoir was the dominant source of sediment</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>summer 1</edomv>
+            <edomvd>"summer 1," was the period of relatively low sediment transport during low flows of the first summer of dam removal</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>Lake Mills release</edomv>
+            <edomvd>"Lake Mills release," was the period when former Lake Mills reservoir was the dominant source of sediment</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>summer 2</edomv>
+            <edomvd>"summer 2" was the period of relatively low sediment transport during low flows of the first summer of dam removal</edomvd>
+            <edomvds>Producer-defined</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Project year</attrlabl>
+        <attrdef>Identifies the year of dam removal from year 1 to 5, loosely based on water year.</attrdef>
+        <attrdefs>Producer defined</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>proj year 1</rdommin>
+            <rdommax>proj year 5</rdommax>
+            <attrunit>year</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>Denver Federal Center, Building 810, Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80225</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>1-888-275-8747</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>data are downloadable in .csv format (Elwha_DailySedimentLoads_2011to2016.csv) along with CMGDS FGDC-compliant metadata.</resdesc>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>csv</formname>
+          <formvern>Microsoft Excel 2016 MSO (16.0.4549.1000) 64-bit</formvern>
+          <formspec>zip file contains the csv table and associated metadata</formspec>
+          <transize>0.096</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5a25e9f2e4b03852baf67f06</networkr>
+                <networkr>https://doi.org/10.5066/F7PG1QWC</networkr>
+              </networka>
+            </computer>
+            <accinstr>Data can be downloaded via the Internet</accinstr>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None.</fees>
+    </stdorder>
+    <techpreq>This dataset is presented in comma-separated values (CSV) format and can be opened with text-editing software or spreadsheet software (for example, Microsoft Excel).</techpreq>
+  </distinfo>
+  <metainfo>
+    <metd>20201019</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Christopher S Magirl</cntper>
+          <cntorg>U.S. Geological Survey, Arizona Water Science Center</cntorg>
+        </cntperp>
+        <cntpos>Supervisory Hydrologist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>520 N Park Ave, Suite 221</address>
+          <city>Tucson</city>
+          <state>Arizona</state>
+          <postal>85719</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>520-670-3315</cntvoice>
+        <cntemail>magirl@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>
