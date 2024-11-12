@@ -1,0 +1,373 @@
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Andrew C Ritchie</origin>
+        <origin>Jennifer A Bountry</origin>
+        <origin>Timothy J Randle</origin>
+        <pubdate>2018</pubdate>
+        <title>Streamgage measurements, Elwha River, Washington, 2011 to 2016</title>
+        <geoform>Comma-separated values</geoform>
+        <serinfo>
+          <sername>data release</sername>
+          <issue>doi:10.5066/F7PG1QWC</issue>
+        </serinfo>
+        <pubinfo>
+          <pubplace>Pacific Coastal and Marine Science Center, Santa Cruz, California</pubplace>
+          <publish>U.S. Geological Survey</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.5066/F7PG1QWC</onlink>
+        <onlink>https://www.sciencebase.gov/catalog/file/get/5a0dd1c9e4b09af898cf0571</onlink>
+        <lworkcit>
+          <citeinfo>
+            <origin>Andrew C Ritchie</origin>
+            <origin>Christopher A Curran</origin>
+            <origin>Christopher S Magirl</origin>
+            <origin>Jennifer A Bountry</origin>
+            <origin>Robert C Hilldale</origin>
+            <origin>Timothy J Randle</origin>
+            <origin>Jefferey J Duda</origin>
+            <pubdate>2018</pubdate>
+            <title>Data in support of 5-year sediment budget and morphodynamic analysis of Elwha River following dam removals</title>
+            <serinfo>
+              <sername>data release</sername>
+              <issue>doi:10.5066/F7PG1QWC</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Pacific Coastal and Marine Science Center, Santa Cruz, California</pubplace>
+              <publish>U.S. Geological Survey</publish>
+            </pubinfo>
+            <onlink>https://doi.org/10.5066/F7PG1QWC</onlink>
+          </citeinfo>
+        </lworkcit>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Streamgage levels on the Elwha River were measured from 2011 to 2016. These measurements show the height of the river's water surface, both in meters relative to the stream bed, as well as in meters relative to vertical geographic coordinates. Measurements were collected using a Global Water WL16 battery-operated vented water level logger in a hardened casing. The instrument was installed on October 17, 2011 on the left bank of the Elwha River at a power line crossing above the Elwha Surface Water Intake (at approximately river kilometer 5.6), which is downstream of the (now historical) Elwha Dam site. Data collection ended May 12, 2016. The data were collected as part of a study investigating responses of the Elwha River to the removal of two large dams: the Glines Canyon and Elwha dams.
+From July 2, 2015 to October 31, 2015 the gauge was buried under a gravel bar, and the data are not reliable. These data are flagged as "BURIED" in the spreadsheet's "FLAG" column.
+From April 21, 2016 through May 12, 2016 periods of noise and bad data (flagged "NOISE" and "BAD") interrupted valid data values. The gauge was beginning to fail, but comparison with USGS 12046260 stage data allowed identification of valid data.
+After May 12, 2016, significant deviations from expected values and increased noise appeared. This was interpreted as instrument failure and no further data were marked valid. Data are included for reference purposes but flagged as "BAD."</abstract>
+      <purpose>Data were obtained to assess the morphodynamic and sediment budget responses following the removal of two dams in the Elwha River. These data are intended for science researchers, students, policy makers, and the general public. These data can be used with geographic information systems or other software to identify topographic features.</purpose>
+      <supplinf>
+
+
+Any use of trade, product, or firm names is for descriptive purposes only and does not imply endorsement by the U.S. Government.      </supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>20111017</begdate>
+          <enddate>20160512</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-123.614549</westbc>
+        <eastbc>-123.541697</eastbc>
+        <northbc>48.145105</northbc>
+        <southbc>47.959409</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>USGS Metadata Identifier</themekt>
+        <themekey>USGS:5a0dd1c9e4b09af898cf0571</themekey>
+      </theme>
+      <theme>
+        <themekt>USGS Thesaurus</themekt>
+        <themekey>field inventory and monitoring</themekey>
+        <themekey>time series datasets</themekey>
+        <themekey>river systems</themekey>
+        <themekey>river reaches</themekey>
+        <themekey>stream-gage measurement</themekey>
+      </theme>
+      <theme>
+        <themekt>Data Categories for Marine Planning</themekt>
+        <themekey>Substrate</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>inlandWaters</themekey>
+      </theme>
+      <theme>
+        <themekt>Marine Realms Information Bank (MRIB) keywords</themekt>
+        <themekey>river channel</themekey>
+        <themekey>river bank</themekey>
+        <themekey>sediment deposition</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>U.S. Geological Survey</themekey>
+        <themekey>USGS</themekey>
+        <themekey>Coastal and Marine Geology Program</themekey>
+        <themekey>CMGP</themekey>
+        <themekey>Pacific Coastal and Marine Science Center</themekey>
+        <themekey>PCMSC</themekey>
+        <themekey>U.S. Bureau of Reclamation</themekey>
+        <themekey>USBR</themekey>
+      </theme>
+      <place>
+        <placekt>Geographic Names Information System</placekt>
+        <placekey>Elwha River</placekey>
+        <placekey>State of Washington</placekey>
+        <placekey>Lake Mills (historical)</placekey>
+        <placekey>Lake Aldwell (historical)</placekey>
+        <placekey>Elwha River Dam (historical)</placekey>
+        <placekey>Glines Canyon Dam (historical)</placekey>
+        <placekey>Olympic National Park</placekey>
+      </place>
+    </keywords>
+    <accconst>none</accconst>
+    <useconst>USGS-authored or produced data and information are in the public domain from the U.S. Government and are freely redistributable with proper metadata and source attribution. Please recognize and acknowledge the U.S. Geological Survey (USGS) and the U.S. Bureau of Reclamation as the originators of the dataset and in products derived from these data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Andrew C Ritchie</cntper>
+          <cntorg>U.S. Geological Survey, Pacific Coastal and Marine Science Center</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>2885 Mission Street</address>
+          <city>Santa Cruz</city>
+          <state>CA</state>
+          <postal>95060</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>831-460-7454</cntvoice>
+        <cntemail>aritchie@usgs.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Data collection was funded by U.S. Geological Survey, Environmental Protection Agency, National Park Service, and U.S. Bureau of Reclamation</datacred>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Streamgage measurements were examined for reasonable values. From July 2, 2015 to October 31, 2015 the gauge was buried under a gravel bar, and the data are not reliable. These data are flagged as "BURIED" in the spreadsheet's "FLAG" column. From April 21, 2016 through May 12, 2016 periods of noise and bad data (flagged "NOISE" and "BAD") interrupted valid data values. The gauge was beginning to fail, but comparison with USGS 12046260 stage data allowed identification of valid data. After May 12, 2016, significant deviations from expected values and increased noise appeared. This was interpreted as instrument failure and no further data were marked valid. Data are included for reference purposes but flagged as "BAD."</attraccr>
+    </attracc>
+    <logic>No formal logical accuracy tests were conducted</logic>
+    <complete>Data set is considered complete for the information presented, as described in the abstract. Users are advised to read the rest of the metadata record carefully for additional details.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>No formal positional accuracy tests were conducted</horizpar>
+      </horizpa>
+      <vertacc>
+        <vertaccr>No formal positional accuracy tests were conducted</vertaccr>
+      </vertacc>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>A Global Water WL16 battery-operated vented water level logger in a hardened casing was installed on the left bank of the Elwha River at powerline crossing above the Elwha Surface Water Intake (at approximately river kilometer 5.6) on October 17, 2011. Data collection ended May 12, 2016. From July 2, 2015 to October 31, 2015 the gauge was buried under a gravel bar, and the data are not reliable. These data are flagged as "BURRIED" in the spreadsheet's "FLAG" column.
+From April 21, 2016 through May 12, 2016 periods of noise and bad data (flagged "NOISE" and "BAD") interrupt valid data values. The gauge was beginning to fail, but comparison with USGS 12046260 stage data allowed identification of valid data. After May 12, 2016, significant deviations from expected values and increased noise appeared. This was interpreted as instrument failure and no further data were marked valid. Data are included for reference purposes but flagged as "BAD."</procdesc>
+        <procdate>20160930</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Corrected name of theme keyword thesaurus from ISO 19115 Topic Categories to Category.</procdesc>
+        <procdate>20180717</procdate>
+        <proccont>
+          <cntinfo>
+            <cntperp>
+              <cntper>Susan A Cochran</cntper>
+              <cntorg>U.S. Geological Survey, Pacific Coastal and Marine Science Center</cntorg>
+            </cntperp>
+            <cntaddr>
+              <addrtype>mailing and physical</addrtype>
+              <address>2885 Mission St.</address>
+              <city>Santa Cruz</city>
+              <state>CA</state>
+              <postal>95060</postal>
+              <country>United States</country>
+            </cntaddr>
+            <cntvoice>831-460-7545</cntvoice>
+            <cntemail>scochran@usgs.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+      <procstep>
+        <procdesc>Edited metadata to add keywords section with USGS persistent identifier as theme keyword. No data were changed.</procdesc>
+        <procdate>20201019</procdate>
+        <proccont>
+          <cntinfo>
+            <cntorgp>
+              <cntorg>U.S. Geological Survey</cntorg>
+              <cntper>VeeAnn A. Cross</cntper>
+            </cntorgp>
+            <cntpos>Marine Geologist</cntpos>
+            <cntaddr>
+              <addrtype>Mailing and Physical</addrtype>
+              <address>384 Woods Hole Road</address>
+              <city>Woods Hole</city>
+              <state>MA</state>
+              <postal>02543-1598</postal>
+            </cntaddr>
+            <cntvoice>508-548-8700 x2251</cntvoice>
+            <cntfax>508-457-2310</cntfax>
+            <cntemail>vatnipp@usgs.gov</cntemail>
+          </cntinfo>
+        </proccont>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <indspref>Data were collected in the Elwha River, Washington at the Elwha Dam (former Lake Aldwell) and the Glines Canyon Dam (former Lake Mills).</indspref>
+    <direct>Point</direct>
+  </spdoinfo>
+  <spref>
+    <vertdef>
+      <altsys>
+        <altdatum>North American Vertical Datum of 1988</altdatum>
+        <altres>0.01</altres>
+        <altunits>meters</altunits>
+        <altenc>Attribute values</altenc>
+      </altsys>
+    </vertdef>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Elwha_Streamgage_2011to2016.csv</enttypl>
+        <enttypd>Staff gauge measurements in relative and geographic elevations, the date and time of the measurement, and the quality of the measurement.</enttypd>
+        <enttypds>Producer defined.</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>DateTime</attrlabl>
+        <attrdef>The date and time of measurement, in mm/dd/yyyy hh:mm format.</attrdef>
+        <attrdefs>Producer defined.</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>10/17/2011 10:25</rdommin>
+            <rdommax>09/30/2016 23:34</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>StageHeight_m</attrlabl>
+        <attrdef>The stage height in meters relative to stream bed.</attrdef>
+        <attrdefs>Producer defined.</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0.10</rdommin>
+            <rdommax>3.40</rdommax>
+            <attrunit>meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NAVD88Height_m</attrlabl>
+        <attrdef>The stage height in meters relative to North American Vertical Datum of 1988.</attrdef>
+        <attrdefs>Producer defined.</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>22.36</rdommin>
+            <rdommax>25.66</rdommax>
+            <attrunit>meters</attrunit>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>FLAG</attrlabl>
+        <attrdef>Measurement quality designation.</attrdef>
+        <attrdefs>Producer defined.</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>OK</edomv>
+            <edomvd>Measurement was valid.</edomvd>
+            <edomvds>Producer defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>BURIED</edomv>
+            <edomvd>The instrument was buried at the time of measurement.</edomvd>
+            <edomvds>Producer defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>NOISY</edomv>
+            <edomvd>Measurement value may not be valid (value interpreted as noise); gauge was beginning to fail.</edomvd>
+            <edomvds>Producer defined.</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>BAD</edomv>
+            <edomvd>Measurement interpreted as instrument failure; data included for reference purposes.</edomvd>
+            <edomvds>Producer defined.</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>U.S. Geological Survey - ScienceBase</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>Denver Federal Center, Building 810, Mail Stop 302</address>
+          <city>Denver</city>
+          <state>CO</state>
+          <postal>80225</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>1-888-275-8747</cntvoice>
+        <cntemail>sciencebase@usgs.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>data are downloadable in .csv format (Elwha_Streamgage_2011to2016.csv) along with CMGDS FGDC-compliant metadata.</resdesc>
+    <distliab>Unless otherwise stated, all data, metadata and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. Although these data and associated metadata have been reviewed for accuracy and completeness and approved for release by the U.S. Geological Survey (USGS), no warranty expressed or implied is made regarding the display or utility of the data on any other system or for general or scientific purposes, nor shall the act of distribution constitute any such warranty.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>csv</formname>
+          <formvern>Microsoft Excel 2016 MSO (16.0.4549.1000) 64-bit</formvern>
+          <formspec>zip file contains the csv table and associated metadata</formspec>
+          <transize>0.28</transize>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://www.sciencebase.gov/catalog/file/get/5a0dd1c9e4b09af898cf0571</networkr>
+                <networkr>https://doi.org/10.5066/F7PG1QWC</networkr>
+              </networka>
+            </computer>
+            <accinstr>Data can be downloaded via the Internet</accinstr>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+    <techpreq>The downloadable data file is available in comma-separated values (CSV) spreadsheet format. Text editing software can be used to open the file, as well as spreadsheet programs, such as Microsoft Excel.</techpreq>
+  </distinfo>
+  <metainfo>
+    <metd>20201019</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Andrew C Ritchie</cntper>
+          <cntorg>U.S. Geological Survey, Pacific Coastal and Marine Science Center</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>2885 Mission Street</address>
+          <city>Santa Cruz</city>
+          <state>CA</state>
+          <postal>95060</postal>
+          <country>United States</country>
+        </cntaddr>
+        <cntvoice>831-460-7454</cntvoice>
+        <cntemail>aritchie@usgs.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>
