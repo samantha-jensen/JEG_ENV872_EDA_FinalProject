@@ -1,0 +1,77 @@
+---
+title: "data_messwith"
+output: html_document
+date: "2024-11-07"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse);library(lubridate);library(here);library(RColorBrewer)
+library(sf)
+library(leaflet)
+library(mapview); mapviewOptions(fgb = FALSE)
+here()
+```
+
+## R Markdown
+
+
+
+```{r read}
+Daily_Sed <- read.csv(file =
+       here('Final_Project/Data/Raw/Elwha_DailySedimentLoads_2011to2016.csv'),
+              stringsAsFactors = TRUE)
+Daily_Sed$Day <- as.Date(Daily_Sed$Day, format = "%m/%d/%Y")
+summary(Daily_Sed)
+
+Stream_gage <- read.csv(file =
+               here('Final_Project/Data/Raw/Elwha_Streamgage_2011to2016.csv'),
+                  stringsAsFactors = TRUE) 
+Stream_gage$DateTime <- as.Date(Stream_gage$DateTime, format = "%m/%d/%Y")
+
+```
+
+
+
+```{r plotting data, echo=FALSE}
+#dam_data <- dam_data %>% 
+ # rename(Daily.discharge = Daily.Discharge..m3.s.)
+  
+
+Daily_Sed <- Daily_Sed %>% group_by(month(Day)) 
+Daily_Sed <- Daily_Sed %>% 
+  group_by(Day)
+ggplot(Daily_Sed, aes(x = Day, y = Daily.Discharge..m3.s.)) +
+  geom_point()
+```
+
+
+```{r}
+install.packages("tseries")
+library(tseries)
+ggplot(Daily_Sed, aes(x = Day, y = Daily.Discharge..m3.s.)) +
+  geom_line() +
+  geom_smooth(method = "lm")
+summary(Daily_Sed$Day)
+
+SedTS <- ts(Daily_Sed, start = c(2011, 01), frequency = 365)
+Sed_Decomposed <- stl(SedTS, s.window = "periodic") 
+
+```
+```{r}
+ggplot(Stream_gage, aes(x = DateTime, y = StageHeight_m)) +
+  geom_line() +
+  geom_smooth(method = "lm")
+
+Stream_gage_clean <- Stream_gage %>% 
+  group_by(DateTime) %>% 
+  summarise(StageHeight_m = mean(StageHeight_m))
+ggplot(Stream_gage_clean, aes(x = DateTime, y = StageHeight_m)) +
+  geom_line() +
+  geom_smooth(method = "lm")
+
+Gage.ts <- ts(Stream_gage_clean, start(2011, 17, frequency = 365))
+gage_decomposed <- stl(Gage.ts, s.window = "periodic")
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
