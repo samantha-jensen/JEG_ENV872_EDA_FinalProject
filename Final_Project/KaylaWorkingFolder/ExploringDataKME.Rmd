@@ -1,4 +1,33 @@
 ```{r load libraries}
 library(tidyverse)
+library(here)
 ```
+
+
+```{r loading in data}
+here()
+gage_data <- read_csv(here('Final_Project/Data/Raw/Elwha_Streamgage_2011to2016.csv'))
+head(gage_data)
+#noise versus bad in "flag" col 
+#take out data buried, noise, bad; view metadata
+
+sediment_data <- read_csv(here('Final_Project/Data/Raw/Elwha_DailySedimentLoads_2011to2016.csv'))
+head(sediment_data)
+```
+
+Ideas 
+
+Time Series 
+- stream gage time series, maybe average each day
+    - question: is there a trend? is there a seasonal trend?
+    - is there a change in stream gage levels before and after dam removal?
+    - did the trend change?
+    
+
+
+
+Spatial 
+- make a map locating the dam 
+
+
 
