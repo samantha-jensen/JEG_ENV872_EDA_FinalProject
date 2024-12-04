@@ -1,0 +1,87 @@
+---
+title: "Time Series Analysis"
+output: pdf
+date: "2024-12-11"
+---
+```{r}
+# loading Packages
+library(tidyverse);library(lubridate);library(here)
+library(Kendall)
+library(zoo)
+library(trend)
+here()
+```
+
+```{r}
+# reading in data files 
+Elwa_stream <- read.csv(file = 
+            here('Final_Project/Data/Processed/Elwa_Stream_Wrangled.csv'), 
+            stringsAsFactors = TRUE)
+Elwa_stream$Date <- as.Date(Elwa_stream$Date, format = "%Y-%m-%d")
+Elwa_sediment <- read.csv(file = 
+            here('Final_Project/Data/Processed/Elwa_Sediment_Wrangled.csv'), 
+            stringsAsFactors = TRUE)
+
+theme1 <- theme_classic(base_size = 14) + 
+  theme(axis.text = element_text(color = "darkblue"),
+line = element_line(color = "black",
+                    linewidth = 2),
+legend.position = "right") 
+theme_set(theme1)
+```
+
+```{r}
+# plotting stage height data for each day 
+
+ggplot(Elwa_stream, aes(x = Date, y = Avg_Stage_Height)) + 
+  geom_line() + 
+  geom_smooth(method = 'lm')
+
+Elwa_stream_daily <- Elwa_stream 
+
+Stream_daily.ts <- ts(Elwa_stream_daily$Avg_Stage_Height, 
+                      start = c(2011, 10), frequency = 365)
+stream_daily_decomp <- stl(Stream_daily.ts, s.window = 'periodic')
+plot(stream_daily_decomp)
+
+SeasonalMannKendall(Stream_daily.ts)
+# tau = 0.487, 2-sided pvalue =< 2.22e-16 
+# moderate increasing trend 
+# can reject the null hypothesis because the P value is less than 0.05. This trend is not random 
+
+nonseasonal_daily <- Stream_daily.ts -
+stream_daily_decomp$time.series[,"seasonal"] 
+plot(nonseasonal_daily)
+MannKendall(nonseasonal_daily)
+```
+
+```{r}
+# Averaging by month 
+Elwa_stream_monthly <- Elwa_stream %>% 
+  mutate(Month = month(Date), Year = year(Date))
+Elwa_stream_monthly <- Elwa_stream_monthly %>% 
+  group_by(Month, Year) %>% 
+  summarise(Avg_Stage_Height = mean(Avg_Stage_Height)) %>% 
+  rename(Monthly_Avg_Stage_Height = Avg_Stage_Height)
+Elwa_stream_monthly <- mutate(Elwa_stream_monthly, Date = as.Date(
+paste(Year, Month, "01", sep = "-")))
+
+ggplot(Elwa_stream_monthly, aes(x = Date, y = Monthly_Avg_Stage_Height)) + 
+  geom_line() + 
+  geom_smooth(method = 'lm')
+
+stream_monthly.ts <- ts(Elwa_stream_monthly$Monthly_Avg_Stage_Height, start = c(2011, 10), frequency = 12)
+stream_monthly_decomp <- stl(stream_monthly.ts, s.window = 'periodic') 
+plot(stream_monthly_decomp) 
+
+SeasonalMannKendall(stream_monthly.ts)
+# tau = -0.0208 basically no trend 
+# p value = 0.87113 cannot reject the null hypothesis indicating no significant trend 
+
+nonseasonal_monthly <- stream_monthly.ts -
+stream_monthly_decomp$time.series[,"seasonal"] 
+plot(nonseasonal_monthly)
+
+MannKendall(nonseasonal_monthly)
+```
+
