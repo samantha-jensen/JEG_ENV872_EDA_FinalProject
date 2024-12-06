@@ -1,33 +1,127 @@
+
+Kayla's Working Rmd
+
+To do:
+- rationale (1-2 paragraphs with citations)
+- Numbered list of research questions 
+- Analysis #2: Comparison of sediment distributions before and after dam removal
+(t-test before and after dam removal)
+- contribute to conclusion
+
+
+
+Libraries
 ```{r load libraries}
 library(tidyverse)
 library(here)
+library(ggplot2)
+library(lubridate)
 ```
 
-
+Loading in Data
 ```{r loading in data}
+#check working environment
 here()
-gage_data <- read_csv(here('Final_Project/Data/Raw/Elwha_Streamgage_2011to2016.csv'))
-head(gage_data)
-#noise versus bad in "flag" col 
-#take out data buried, noise, bad; view metadata
 
-sediment_data <- read_csv(here('Final_Project/Data/Raw/Elwha_DailySedimentLoads_2011to2016.csv'))
-head(sediment_data)
+elwha_sediment_raw <- read_csv(here('Final_Project/Data/Raw/Elwha_DailySedimentLoads_2011to2016.csv'))
+
+
+#read in wrangled stream data 
+elwha_stream <- read_csv(here('Final_Project/Data/Processed/Elwa_Stream_Wrangled.csv'))
+#fix dates 
+#elwha_stream$Date <- as.Date(elwha_stream, format = "%Y-%m-%d")
+
+#view stream data
+glimpse(elwha_stream)
+head(elwha_stream)
+
+#read in wrangled sediment data
+elwha_sediment <- read_csv(here('Final_Project/Data/Processed/Elwa_Sediment_Wrangled.csv'))
+
+#view sediment data
+glimpse(elwha_sediment)
+head(elwha_sediment)
 ```
 
-Ideas 
+Analysis #2 - comparison of suspended sediment before and after dam removal
+daily suspended sediment load
 
-Time Series 
-- stream gage time series, maybe average each day
-    - question: is there a trend? is there a seasonal trend?
-    - is there a change in stream gage levels before and after dam removal?
-    - did the trend change?
-    
+Dam Removal went from September 2011 to Summer 2014 
+Before: all dates before 9/2011 (doesn't exist)
+After: 9/2014
+
+Analysis #2 pt 2 - 
+T-test with how the during process compares to the after 
+
+(maybe) time series analysis of suspended sediments during dam removal process
+
+T-test 
+why? a t-test can be used to determine is there is a statistically significant difference
+between two paired data sets ,, a paired or twi sample t-test
+tests whether a change or intervention 
+had a meaningful impact on a group of subjects by comparing measurements before and after
+
+Need to decide which continuous variable to look at to best understand 
+```{r t-test}
+#take a look at data first 
+ggplot(elwha_sediment, aes(x = Date, y = Total_Sed_discharge)) +
+  geom_line()
+
+#okay, keep this idea but for t-test to work we need two factors that we are comparing so we will pick two years
+#based on this graph we will choose 2013 vs 2015 
+
+#select data from only 2013 and 2015, add Year as a column
+elwha_sediment_1315 <- elwha_sediment %>% 
+  mutate(Year = year(Date)) %>%
+  filter(Year == 2013 | Year == 2015)
+
+#now view
+ggplot(elwha_sediment_1315, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
+  geom_freqpoly()
+
+#Continuous dependent variable: Sediment Discharge 
+#Categorical variable with two levels (2012 and 2016)
+twosample_test_13to15 <- t.test(elwha_sediment_1315$Total_Sed_discharge ~ elwha_sediment_1315$Year)
+twosample_test_13to15
+
+#significant 
 
 
 
-Spatial 
-- make a map locating the dam 
+#test other years 
+#2012 to 2015
+elwha_sediment_1215 <- elwha_sediment %>% 
+  mutate(Year = year(Date)) %>%
+  filter(Year == 2012 | Year == 2015)
+
+#now view
+ggplot(elwha_sediment_1215, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
+  geom_freqpoly()
+
+#run t-test
+twosample_test_12to15 <- t.test(elwha_sediment_1215$Total_Sed_discharge ~ elwha_sediment_1215$Year)
+twosample_test_12to15
+#not significant 
 
 
+#2011 to 2016
+elwha_sediment_1116 <- elwha_sediment %>% 
+  mutate(Year = year(Date)) %>%
+  filter(Year == 2011 | Year == 2016)
+
+#now view
+ggplot(elwha_sediment_1116, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
+  geom_freqpoly()
+
+#run t-test
+twosample_test_11to16 <- t.test(elwha_sediment_1116$Total_Sed_discharge ~ elwha_sediment_1116$Year)
+twosample_test_11to16
+
+#not significant?
+```
+
+
+Sources:
+https://www.usgs.gov/centers/pcmsc/science/usgs-science-supporting-elwha-river-restoration-project
+https://geonarrative.usgs.gov/elwhariverrestoration/
 
