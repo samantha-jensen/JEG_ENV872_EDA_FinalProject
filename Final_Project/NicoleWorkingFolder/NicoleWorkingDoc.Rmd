@@ -1,6 +1,6 @@
 
 
-```{r}
+```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 #install libraries
 library(ggplot2)
 library(dbplyr)
@@ -17,7 +17,7 @@ here()
 
 Reading in the stream and sediment data
 
-```{r}
+```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 #read csv
 Elwa_stream <- read.csv(here("Final_Project/Data/Processed/Elwa_Stream_Wrangled.csv"))
 Elwa_stream$Date <- as.Date(Elwa_stream$Date, format = "%Y-%m-%d")
@@ -34,8 +34,9 @@ glimpse(Elwa_sediment)
 ```
 
 Exploratory Analysis - Sediment Loads Data
-```{r}
+```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 summary(Elwa_sediment)
+#kables
 
 exp_discharge <- ggplot(Elwa_sediment, aes(x=Date, y = Discharge))+
   geom_line()+
@@ -44,6 +45,7 @@ exp_discharge
 
 dischargebydate.regression <- lm(data = Elwa_sediment, Discharge ~ Date)
 summary(dischargebydate.regression)
+#kable
 
 #discharge shows strong seasonal trends, with an insignificant slight decrease over time (p value = 0.072918)
 #time series analysis will remove seasonal trends in the data and reveal changes before and after dam removal
@@ -51,8 +53,9 @@ summary(dischargebydate.regression)
 ```
 
 Exploratory Analysis - Streamgage Data
-```{r}
+```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
 summary(Elwa_stream)
+#kables
 
 exp_gage_ht <- ggplot(Elwa_stream, aes(x=Date, y = Avg_Stage_Height))+
   geom_line()+
@@ -61,11 +64,11 @@ exp_gage_ht
 
 stagebydate.regression <- lm(data = Elwa_stream, Avg_Stage_Height ~ Date)
 summary(stagebydate.regression)
-
-#stage height shows strong seasonal trends, with a significant increase over time (p value <2e-16)
-#time series analysis will remove seasonal trends and reveal changes before and after
+#kable
 
 ```
+Figure xxx. Stage height shows strong seasonal trends, with a significant increase over time (p value <2e-16)
+Time series analysis will remove seasonal trends and reveal changes before and after
 
 
 Analysis #3
