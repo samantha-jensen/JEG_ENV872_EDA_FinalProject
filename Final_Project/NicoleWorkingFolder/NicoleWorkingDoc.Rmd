@@ -21,57 +21,128 @@ Reading in the stream and sediment data
 #read csv
 Elwa_stream <- read.csv(here("Final_Project/Data/Processed/Elwa_Stream_Wrangled.csv"))
 Elwa_stream$Date <- as.Date(Elwa_stream$Date, format = "%Y-%m-%d")
-glimpse(Elwa_stream)
-
-
+#glimpse(Elwa_stream)
 
 Elwa_sediment <- read.csv(here("Final_Project/Data/Processed/Elwa_Sediment_Wrangled.csv"))
 Elwa_sediment$Date <- as.Date(Elwa_sediment$Date, format = "%Y-%m-%d")
-glimpse(Elwa_sediment)
-
-
+#glimpse(Elwa_sediment)
 
 ```
 
 Exploratory Analysis - Sediment Loads Data
 ```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-summary(Elwa_sediment)
-#kables
+sed_summary <- summary(Elwa_sediment)
 
+```
+
+| Variable                  | Min.      | Median   | Mean     | Max.       |
+|---------------------------|-----------|----------|----------|------------|
+| Date                      | 2011-09-15 | 2014-03-24 | 2014-03-24 | 2016-09-30 |
+| Discharge                 | 6.33      | 41.70    | 47.70    | 399.50     |
+| Suspended_Sediment_Conc   | 0.227     | 169.500  | 945.363  | 13819.790  |
+| Avg_fraction_fines        | 0.4100    | 0.6850   | 0.6896   | 0.9940     |
+| Suspended_sed_load_t      | 0.1       | 634.4    | 7750.9   | 429806.7   |
+| SS_load_fines_t           | 0.1       | 457.9    | 4533.7   | 269484.4   |
+| SS_load_sand_t            | 0.00      | 186.70   | 3217.18  | 160322.30  |
+| Ungauged_BL               | -7710     | 139      | 1976     | 104444     |
+| Total_Sed_discharge       | 0.1       | 779.8    | 9886.9   | 466989.1   |
+
+```{r}
 exp_discharge <- ggplot(Elwa_sediment, aes(x=Date, y = Discharge))+
-  geom_line()+
+  geom_point()+
   geom_smooth(method = "lm")
 exp_discharge
 
 dischargebydate.regression <- lm(data = Elwa_sediment, Discharge ~ Date)
-summary(dischargebydate.regression)
-#kable
-
-#discharge shows strong seasonal trends, with an insignificant slight decrease over time (p value = 0.072918)
-#time series analysis will remove seasonal trends in the data and reveal changes before and after dam removal
+dischbydate_reg <- summary(dischargebydate.regression)
 
 ```
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|-------------|
+| **Intercept** | 96.818629  | 27.387137  | 3.535   | 0.000418 *** |
+| **Date**      | -0.003041  | 0.001695   | -1.794  | 0.072918 .   |
+| **R-squared** |            |            |         | 0.001746     |
+| **Adj R-squared** |        |            |         | 0.001204     |
+
+Discharge shows strong seasonal trends, with an insignificant slight decrease over time (p value = 0.072918). Seasonal trends appear to become stronger with time. Time series analysis will remove seasonal trends in the data and reveal changes before and after dam removal
 
 Exploratory Analysis - Streamgage Data
 ```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
-summary(Elwa_stream)
-#kables
+summary_stream <- summary(Elwa_stream)
 
+```
+| Variable          | Min.       | Median     | Mean       | Max.       |
+|--------------------|------------|------------|------------|------------|
+| Date              | 2011-10-17 | 2013-11-27 | 2013-12-11 | 2016-05-11 |
+| Avg_Stage_Height  | 0.1608     | 0.9752     | 0.9908     | 2.6560     |
+
+```{r}
 exp_gage_ht <- ggplot(Elwa_stream, aes(x=Date, y = Avg_Stage_Height))+
-  geom_line()+
+  geom_point()+
   geom_smooth(method = "lm")
 exp_gage_ht
 
 stagebydate.regression <- lm(data = Elwa_stream, Avg_Stage_Height ~ Date)
-summary(stagebydate.regression)
-#kable
-
+stagebydate_summary<- summary(stagebydate.regression)
 ```
-Figure xxx. Stage height shows strong seasonal trends, with a significant increase over time (p value <2e-16)
-Time series analysis will remove seasonal trends and reveal changes before and after
+
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|---------------|
+| **Intercept** | -5.493e+00 | 2.753e-01  | -19.95  | <2e-16 ***    |
+| **Date**      | 4.040e-04  | 1.715e-05  | 23.56   | <2e-16 ***    |
+| **R-squared** |            |            |         | 0.2646        |
+| **Adj R-squared** |        |            |         | 0.2641        |
+
+Stage height shows strong seasonal trends, with a significant increase over time (p value <2e-16)
+Time series analysis will remove seasonal trends and reveal changes before and after dam removal. 
 
 
-Analysis #3
-Correlations between Daily Water and Sediment Discharge
+Analysis 3: Correlations between Daily Water and Sediment Discharges
 
+```{r echo = TRUE, message = FALSE, warning = FALSE, error = FALSE}
+#Linear regressions on total sediment, fine grain, sand sizes vs discharge
+
+totalsed_discharge <- ggplot(Elwa_sediment, aes(x=Discharge, y = Suspended_sed_load_t))+
+  geom_line()+
+  geom_smooth(method = "lm")
+
+totalsed_discharge
+
+dischargebydate.regression <- lm(data = Elwa_sediment,Suspended_sed_load_t  ~ Discharge)
+summary(dischargebydate.regression)
+#significant relation, R2 = 0.56
+
+fine_discharge <- ggplot(Elwa_sediment, aes(x=Discharge, y = SS_load_fines_t))+
+  geom_line()+
+  geom_smooth(method = "lm")
+
+fine_discharge
+
+dischargebydate.regression <- lm(data = Elwa_sediment, SS_load_fines_t  ~ Discharge)
+summary(dischargebydate.regression)
+#significant relation, R2 = 0.55
+
+sand_discharge <- ggplot(Elwa_sediment, aes(x=Discharge, y = SS_load_sand_t))+
+  geom_line()+
+  geom_smooth(method = "lm")
+
+sand_discharge
+
+dischargebydate.regression <- lm(data = Elwa_sediment, SS_load_sand_t  ~ Discharge)
+summary(dischargebydate.regression)
+#significant relation, R2 = 0.54
+
+fine_fraction_discharge <- ggplot(Elwa_sediment, aes(x=Discharge, y = Avg_fraction_fines))+
+  geom_line()+
+  geom_smooth(method = "lm")
+
+fine_fraction_discharge
+
+dischargebydate.regression <- lm(data = Elwa_sediment, Avg_fraction_fines  ~ Discharge)
+summary(dischargebydate.regression)
+#significant relation, R2 = 0.16
+
+
+#make all into one panel?
+```
 
