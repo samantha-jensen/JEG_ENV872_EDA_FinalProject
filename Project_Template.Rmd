@@ -72,7 +72,10 @@ sed_summary <- summary(elwha_sediment)
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
 exp_discharge <- ggplot(elwha_sediment, aes(x=Date, y = Discharge))+
   geom_point()+
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm")+
+  labs(x = 'Date', 
+       y = expression("Daily Discharge (" ~ m^3/s ~ ")"))+
+  ggtitle('Daily Discharge over Time')
 exp_discharge
 
 dischargebydate.regression <- lm(data = elwha_sediment, Discharge ~ Date)
@@ -104,7 +107,9 @@ summary_stream <- summary(elwha_stream)
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
 exp_gage_ht <- ggplot(elwha_stream, aes(x=Date, y = Avg_Stage_Height))+
   geom_point()+
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm")+
+  labs(y = 'Average Stage Height (m)')+
+  ggtitle('Average Stage Height Over Time')
 exp_gage_ht
 
 stagebydate.regression <- lm(data = elwha_stream, Avg_Stage_Height ~ Date)
@@ -132,13 +137,18 @@ Time series analysis will remove seasonal trends and reveal changes before and a
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
 totalsed_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Suspended_sed_load_t))+
   geom_line()+
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Total Suspended Sediment Load (tonnes)')+
+  ggtitle('Total SS vs Discharge')
 
 totalsed_discharge
 
 dischargebydate.totalregression <- lm(data = elwha_sediment,Suspended_sed_load_t  ~ Discharge)
 dischargebydate_totalsummary <- summary(dischargebydate.regression)
 #significant relation, R2 = 0.56
+
+
 
 ```
 
@@ -152,13 +162,18 @@ dischargebydate_totalsummary <- summary(dischargebydate.regression)
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
 fine_fraction_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Avg_fraction_fines))+
   geom_line()+
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Average Fine Sediment Fraction')+
+  ggtitle('Fine SS Fraction vs Discharge')
 
 fine_fraction_discharge
 
 dischargebydate.finesregression <- lm(data = elwha_sediment, Avg_fraction_fines  ~ Discharge)
 dischargebydate_finessummary <- summary(dischargebydate.regression)
 #significant relation, R2 = 0.16
+
+
 ```
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
@@ -170,7 +185,7 @@ dischargebydate_finessummary <- summary(dischargebydate.regression)
 
 ## Question 2: Time series?
 
-##Question 3: Comparison of distributions?
+## Question 3: Comparison of distributions?
 
 
 
