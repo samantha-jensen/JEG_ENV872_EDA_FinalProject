@@ -16,8 +16,10 @@ geometry: margin=2.54cm
   5. **Table 5**: Regression Results for Total SS vs Discharge
   6. **Table 6**: Regression Results for Fine Fraction vs Discharge
   7. **Table 7**: Regression Results for Sand Fraction vs Discharge
+
 \newpage
 \listoffigures 
+## List of Figures
 \newpage
 
 ```{r setup, include=FALSE}
@@ -117,6 +119,7 @@ The datasets downloaded included many columns that were not useful for this anal
 sed_summary <- summary(elwha_sediment)
 
 ```
+Table 1: Summary Statistics for the Sediment Data
 
 | Variable                  | Minimum      | Median   | Mean     | Maximum       |
 |---------------------------|-----------|----------|----------|------------|
@@ -131,7 +134,6 @@ sed_summary <- summary(elwha_sediment)
 | Total Sediment Discharge (tonnes) | 0.1       | 779.8    | 9886.9   | 466989.1   |
 
 
-Table 1: Summary Statistics for the Sediment Data
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= 'Daily Discharge over Time'}
 exp_discharge <- ggplot(elwha_sediment, aes(x=Date, y = Discharge))+
@@ -145,6 +147,8 @@ dischargebydate.regression <- lm(data = elwha_sediment, Discharge ~ Date)
 dischbydate_reg <- summary(dischargebydate.regression)
 
 ```
+
+\newpage
 
 Table 2: Regression Results for Daily Discharge Over Time
   
@@ -163,13 +167,16 @@ Discharge shows strong seasonal trends, with an insignificant slight decrease ov
 summary_stream <- summary(elwha_stream)
 
 ```
+
+Table 3: Streamgage Data Summary Statistics
+
 | Variable          | Minimum       | Median     | Mean       | Maximum     |
 |--------------------|------------|------------|------------|------------|
 | Date              | 2011-10-17 | 2013-11-27 | 2013-12-11 | 2016-05-11 |
 | Average Stage Height (m)  | 0.1608     | 0.9752     | 0.9908     | 2.6560     |
 
 
-Table 3: Streamgage Data Summary Statistics
+
 
 
 \newpage
@@ -452,3 +459,7 @@ The main limitation of these datasets are that they do not include data from lon
 “History of the Elwha.” National Parks Service, U.S. Department of the Interior, 2 Oct. 2019, www.nps.gov/olym/learn/nature/history-of-the-elwha.htm. 
 
 “USGS Science Supporting the Elwha River Restoration Project.” U.S. Geological Survey, 3 Nov. 2020, www.usgs.gov/centers/pcmsc/science/usgs-science-supporting-elwha-river-restoration-project. 
+
+# GitHub Repository
+
+Link to our repository: https://github.com/samantha-jensen/JEG_ENV872_EDA_FinalProject
