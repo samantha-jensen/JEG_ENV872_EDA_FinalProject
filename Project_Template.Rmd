@@ -1,4 +1,11 @@
-\newpage
+---
+title: "Short Term Impacts of Two Dam Removals along the Elwha River"
+author: "Kayla Emerson, Nicole Gutkowski, Samantha Jensen"
+date: "December 11, 2024"
+output: pdf_document
+geometry: margin=2.54cm
+---
+
 \tableofcontents 
 \newpage
 \listoftables 
@@ -7,7 +14,6 @@
 \newpage
 
 ```{r setup, include=FALSE}
-# Set your working directory
 
 # Load your packages
 library(ggplot2)
@@ -19,11 +25,16 @@ library(tseries)
 library(zoo)
 library(knitr)
 library(here)
+
+# Set your working directory
 here()
 
 # Set your ggplot theme
 
-
+project_theme <- theme_classic(base_size = 14) +
+  theme(axis.text = element_text(color = "black"), 
+        legend.position = "right")
+theme_set(project_theme)
 
 # Load your datasets
 elwha_stream <- read.csv(here("Final_Project/Data/Processed/Elwa_Stream_Wrangled.csv"))
@@ -51,8 +62,8 @@ We chose to study the short term impact of dam removals on the Elwha River becau
 
 1. What is the correlation between sediment and water discharge in the Elwha River during the dam removal?
 2. How does the trend of streamflow overtime relate to the trend of sediment discharge?
-3. What is the trend of stream discharge overtime in the Elwha River during dam removal?
-4. What is the trend of sediment discharge overtime in the Elwha River during dam removal?
+3. What is the trend of stream discharge overtime in the Elwha River during and after dam removal?
+4. What is the trend of sediment discharge overtime in the Elwha River during and after dam removal?
 5. How does sediment discharge compare before, during, and after dam removal in the Elwha River? 
 
 
@@ -111,7 +122,7 @@ sed_summary <- summary(elwha_sediment)
 | Ungauged Bedload (tonnes)               | -7710     | 139      | 1976     | 104444     |
 | Total Sediment Discharge (tonnes) | 0.1       | 779.8    | 9886.9   | 466989.1   |
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '1'}
 exp_discharge <- ggplot(elwha_sediment, aes(x=Date, y = Discharge))+
   geom_point()+
   geom_smooth(method = "lm")+
@@ -146,7 +157,7 @@ summary_stream <- summary(elwha_stream)
 | Date              | 2011-10-17 | 2013-11-27 | 2013-12-11 | 2016-05-11 |
 | Average Stage Height (m)  | 0.1608     | 0.9752     | 0.9908     | 2.6560     |
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '2'}
 exp_gage_ht <- ggplot(elwha_stream, aes(x=Date, y = Avg_Stage_Height))+
   geom_point()+
   geom_smooth(method = "lm")+
@@ -174,9 +185,9 @@ Time series analysis will remove seasonal trends and reveal changes before and a
 # Analysis
 
 
-## Question 1: How Does Are Daily Water and Sediment Discharges Related?
+## Question 1: What is the correlation between sediment and water discharge in the Elwha River during the dam removal?
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '3'}
 totalsed_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Suspended_sed_load_t))+
   geom_line()+
   geom_smooth(method = "lm")+
@@ -201,7 +212,8 @@ dischargebydate_totalsummary <- summary(dischargebydate.regression)
 | **R-squared** |            |            |         | 0.5561        |
 | **Adj R-squared** |        |            |         | 0.5559        |
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+## Question 2: How does the trend of streamflow overtime relate to the trend of sediment discharge?
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '4'}
 fine_fraction_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Avg_fraction_fines))+
   geom_line()+
   geom_smooth(method = "lm")+
@@ -225,9 +237,9 @@ dischargebydate_finessummary <- summary(dischargebydate.regression)
 | **R-squared** |            |            |         | 0.1699        |
 | **Adj R-squared** |        |            |         | 0.1695        |
 
-## Question 2: How did sediment discharge and river discharge change over time?
+## Question 3: What is the trend of stream discharge overtime in the Elwha River during and after dam removal?
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center', fig.cap= '5'}
 
 Elwha_stream_daily <- elwha_stream 
 
@@ -241,7 +253,7 @@ stream_daily_decomp <- stl(Stream_daily.ts, s.window = 'periodic')
 plot(stream_daily_decomp)
 ```
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.cap= '6'}
 # removing the seasonal component 
 nonseasonal_daily <- Stream_daily.ts -
 stream_daily_decomp$time.series[,"seasonal"] 
@@ -252,7 +264,9 @@ MannKendall(nonseasonal_daily)
 
 ```
 For this time series, the seasonal component was removed in order to run a Mann Kendall test. The test produced a tau value of 0.388 and a p-value of < 2.22e-16. Since the p-value is less than 0.05 and the tau is positive, there is a statistically significant increase in stream gage height from 2011 to 2015. 
-```{r, echo=FALSE}
+
+## Question 4: What is the trend of sediment discharge overtime in the Elwha River during and after dam removal?
+```{r, echo=FALSE, fig.align='center', fig.cap= '7'}
 discharge_daily.ts <- ts(elwha_sediment$Discharge, start = c(2011, 09), 
                          frequency = 365)
 discharge_daily_decomp <- stl(discharge_daily.ts, s.window = 'periodic')
@@ -261,7 +275,7 @@ SeasonalMannKendall(discharge_daily.ts)
 ```
 A Seasonal Mann-Kendall test was performed on the data producing a tau value of 1 and a p-value of 2.22e-16. There is a statistically significant increasing trend for discharge over time. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center', fig.cap= '8'}
 sediment_discharge.ts <- ts(elwha_sediment$Total_Sed_discharge, start = c(2011, 09), frequency = 365)
 sed_discharge_decomp <- stl(sediment_discharge.ts, s.window = 'periodic')
 plot(sed_discharge_decomp)
@@ -279,15 +293,19 @@ normally distributed, but we are not assuming the populations have the same vari
 than a Student's T-test. This test can help us figure out if the differences we see in sediment discharge
 are real or just due to chance.
 
-###Comparing 2013 to 2015
+### Comparing 2013 to 2015
 
 First, plotting sediment over time to decide which years to compare. 
-```{r t-test one, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r t-test, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE,  fig.cap = "Total Sediment Discharge  Over Time", fig.align='center'}
 #plot sediment over time to decide which years to compare
 ggplot(elwha_sediment, aes(x = Date, y = Total_Sed_discharge)) +
   geom_line() +
   labs(y = 'Total Sediment Discharge (tonnes)') +
   ggtitle('Total Sediment Discharge  Over Time')
+```
+\newpage
+
+```{r t-test one, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE,  fig.cap = "Total Sediment Discharge Frequency in 2013 and 2015", fig.align='center'}
 
 #based on this graph we will choose 2013 vs 2015 
 #this will give us an idea of sediment discharge during versus after the removal 
@@ -300,7 +318,7 @@ elwha_sediment_1315 <- elwha_sediment %>%
 #now view 2013 and 2015 as a factor 
 ggplot(elwha_sediment_1315, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
   geom_freqpoly()  +
-  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)') +
+  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)', color = "Year") +
   ggtitle('Total Sediment Discharge Frequency in 2013 and 2015')
 
 #Continuous dependent variable: Sediment Discharge 
@@ -316,7 +334,7 @@ interval, there is a statistical difference in the mean sediment discharge betwe
 2013 having the greater mean. 
 
 ### Comparing 2012 to 2015
-```{r t-test two, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r t-test two, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE,  fig.cap = "Total Sediment Discharge Frequency in 2012 and 2015", fig.align='center'}
 #test other years to understand the comparison better  
 
 #select data from only 2012 and 2015, add Year as a column
@@ -327,7 +345,7 @@ elwha_sediment_1215 <- elwha_sediment %>%
 #now view
 ggplot(elwha_sediment_1215, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
   geom_freqpoly() +
-  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)') +
+  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)', color = "Year") +
   ggtitle('Total Sediment Discharge Frequency in 2012 and 2015')
 
 #run t-test
@@ -340,7 +358,7 @@ The Welch Two Sample t-test comparing 2012 to 2015 has a t statistic of 1.6112,
 interval, there is not a statistical difference in the mean sediment discharge between 2012 and 2015.
 
 ### Comparing 2011 to 2016
-```{r t-test three, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+```{r t-test three, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap = "Total Sediment Discharge Frequency in 2011 and 2016"}
 #now compare before and after dam removals, from first and last year of dataset
 #select data from only 2011 and 2016, add Year as a column
 elwha_sediment_1116 <- elwha_sediment %>% 
@@ -350,7 +368,7 @@ elwha_sediment_1116 <- elwha_sediment %>%
 #now view
 ggplot(elwha_sediment_1116, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
   geom_freqpoly() +
-  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)') +
+  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)', color = "Year") +
   ggtitle('Total Sediment Discharge Frequency in 2011 and 2016')
 
 #run t-test
@@ -366,6 +384,10 @@ interval, there is not a statistical difference in the mean sediment discharge b
 \newpage
 
 # Summary and Conclusions
+
+In summary, we were able to better understand the short-term impacts of two dam removals on the Elwha River with sediment and stream gage data. The removal of the Elwha Dam led to an increase in stream discharge(Figure ) as well as total sediment discharge(Figure). Over time the average daily stream gage height increased indicating rising water levels after the removal of the Elwha Dam(Figure ). Increased water discharge was positively correlated with total sediment discharge (Figure). Looking at the types of suspended sediment being discharged, as discharge increased the proportion of fine particles decreased (Figure), while sand proportions increased (Figure). This indicates that greater discharge magnitudes were able to suspend and carry larger particles. These particle distributions are important to consider in future investigations of water quality impacts due to suspended sediments. Sediment discharge somewhat changed before, during, and after dam removal in the Elwha River. There was a statistical difference in sediment discharge between 2013 and 2015 (Figure), but not a significant difference in sediment discharge between 2012 and 2015 (Figure) and 2011 and 2016 (Figure). 
+
+The main limitation of these datasets are that they do not include data from long before the dams were removed or long after. The first dam was removed in 2011, when the datasets begin, and the second dam was removed in 2014. Only two years of data after the removals is not sufficient to understand long-term impacts of the dam removal, but we can try to understand short term impacts. In addition, we are unable to accurately compare environmental parameters before and after dam removal because we do not have sufficient data before the removals. Looking forward, it could be beneficial to continue monitoring the Elwha River to understand the long-term impacts of dam removal. Scientists can also conduct further analyses to understand habitat destruction or reintroduction, based on turbidity and other water quality parameters in the Elwha. 
 
 
 \newpage
