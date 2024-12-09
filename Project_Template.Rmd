@@ -237,9 +237,9 @@ dischargebydate_finessummary <- summary(dischargebydate.regression)
 | **R-squared** |            |            |         | 0.1699        |
 | **Adj R-squared** |        |            |         | 0.1695        |
 
-## Question 3: What is the trend of stream discharge overtime in the Elwha River during and after dam removal?
+## Question 3: What is the trend of stream discharge and gage height overtime in the Elwha River during and after dam removal?
 
-```{r, echo=FALSE, fig.align='center', fig.cap= '5'}
+```{r Time Series: Gage Height, echo=FALSE, fig.align='center', fig.cap= 'Decomposed Time Series of Daily Stream Gage Height'}
 
 Elwha_stream_daily <- elwha_stream 
 
@@ -253,7 +253,7 @@ stream_daily_decomp <- stl(Stream_daily.ts, s.window = 'periodic')
 plot(stream_daily_decomp)
 ```
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.cap= '6'}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align='center', fig.cap= 'Non Seasonal Trend of Average Daily Stream Gage Height'}
 # removing the seasonal component 
 nonseasonal_daily <- Stream_daily.ts -
 stream_daily_decomp$time.series[,"seasonal"] 
@@ -264,9 +264,7 @@ MannKendall(nonseasonal_daily)
 
 ```
 For this time series, the seasonal component was removed in order to run a Mann Kendall test. The test produced a tau value of 0.388 and a p-value of < 2.22e-16. Since the p-value is less than 0.05 and the tau is positive, there is a statistically significant increase in stream gage height from 2011 to 2015. 
-
-## Question 4: What is the trend of sediment discharge overtime in the Elwha River during and after dam removal?
-```{r, echo=FALSE, fig.align='center', fig.cap= '7'}
+```{r Time Series: Discharge, echo=FALSE, fig.align='center', fig.cap= 'Decomposed Time Series of Daily Discharge'}
 discharge_daily.ts <- ts(elwha_sediment$Discharge, start = c(2011, 09), 
                          frequency = 365)
 discharge_daily_decomp <- stl(discharge_daily.ts, s.window = 'periodic')
@@ -275,7 +273,9 @@ SeasonalMannKendall(discharge_daily.ts)
 ```
 A Seasonal Mann-Kendall test was performed on the data producing a tau value of 1 and a p-value of 2.22e-16. There is a statistically significant increasing trend for discharge over time. 
 
-```{r, echo=FALSE, fig.align='center', fig.cap= '8'}
+## Question 4: What is the trend of sediment discharge overtime in the Elwha River during and after dam removal?
+
+```{r Time Series: Sediment, echo=FALSE, fig.align='center', fig.cap= 'Decomposed Time Series of Sediment Discharge'}
 sediment_discharge.ts <- ts(elwha_sediment$Total_Sed_discharge, start = c(2011, 09), frequency = 365)
 sed_discharge_decomp <- stl(sediment_discharge.ts, s.window = 'periodic')
 plot(sed_discharge_decomp)
