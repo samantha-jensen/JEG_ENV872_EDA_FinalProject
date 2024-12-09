@@ -39,15 +39,54 @@ elwha_sediment$Date <- as.Date(elwha_sediment$Date, format = "%Y-%m-%d")
 
 # Rationale and Research Questions
 
+## History of the Elwha River
+
+The Elwha River is located on the Olympic Peninsula in Washington. It is sourced from the snowy Olympic Mountains and flows north across Olympic National Park to Port Angeles and empties in the Strait of Juan de Fuca (NPS, 2019). The Elwha is an important spawning habitat for anadromous fish, including char, trout, and five different types of economically significant salmon. In 1910 the Olympic Power Company began constructing the Elwha Dam to supply energy to Port Angeles. To meet the demands of a growing economy, a second dam was constructed in 1927 (Glines Canyon Dam), eight miles upstream from the first. However, the contractors failed to consider fish passage and sediment flow when constructing the dams along the Elwha. This shortcoming led to decimated salmon populations and erosion of riverbanks and suitable spawning habitats downstream of the dams. In response to threatened salmon populations, Congress passed the Elwha River Ecosystem and Fisheries Restoration Act in 1992. This act authorized the US Department of the Interior to restore the Elwha River, which included removing the Elwha Dam in 2011 and the Glines Canyon Dam in 2014. Today, salmon are able to once again spawn in the Elwha and sediment is able to flow down the river to the shoreline. 
+
+## Rationale 
+
+We chose to study the short term impact of dam removals on the Elwha River because this is one of the largest dam removal and river restoration projects in the country (USGS, 2020). The accessible data is very detailed and can tell us how the river changes instantly with the change in geomorphology. When the dams were removed, millions of tons of sediment were released back into the river channel, surrounding estuaries, beaches, and the river mouth, greatly impacting several ecosystems. In the short term, this sudden change is overwhelming to the ecosystems, but in the long term, the sediment will help to support life and ecological dynamics along the Elwha. 
+
+## Research Questions 
+
+1. What is the correlation between sediment and water discharge in the Elwha River during the dam removal?
+2. How does the trend of streamflow overtime relate to the trend of sediment discharge?
+3. What is the trend of stream discharge overtime in the Elwha River during dam removal?
+4. What is the trend of sediment discharge overtime in the Elwha River during dam removal?
+5. How does sediment discharge compare before, during, and after dam removal in the Elwha River? 
 
 
 \newpage
 
 # Dataset Information
 
+The datasets we are using are publicly available from the U.S. Geological Survey. They include daily sediment loads and streamgage measurements before, during, and after dam removal, from 2011 to 2016 from gaging stations on the Elwha River at the diversion near Port Angeles, WA (downstream of dams). 
+
+The sediment dataset variables include:
+Date - date of the daily values 
+Daily Discharge - measured in cubic meters per second
+Daily SSC - daily suspended-sediment concentration in milligrams per liter
+Upper SSC Bound - upper uncertainty bound, one standard deviation, of SSC
+Lower SSC Bound - lower uncertainty bound, one standard deviation, of SSC
+Average Fraction fines - average fraction of fine-grained particles (silts and clays) is suspension based on the data of two turbidimeters 
+Daily Suspended-Sediment Load - daily suspended-sediment load in tonnes
+Daily SS Load of Fines - daily suspended-sediment load of fine-grained particles (silts and clays) in tonnes
+Daily SS Load of Sand - daily suspended-sediment load of sand-sized particles (in tonnes)
+Daily Total Gauged, less than 2-mm Bedload - daily total gauged bedload of particles larger than 2 mm (in tonnes)
+Daily Gauged Bedload for 2-16mm Particles - daily total gauged bedload of particles larger than 2 mm and smaller than 16 mm (in tonnes)
+Daily Gauged Bedload for Equal and Greater than 16mm Particles - daily total gauged bedload of particles larger than 16 mm (in tonnes)
+Estimated Daily Ungauged Bedload - estimated ungauged portion of particles in bedload flux that are less than 2 mm (in tonnes)
+Total Sediment Discharge - total daily sediment discharge. Included gauged suspended-sediment load, gauged bedload, and estimated bedload (in tonnes)
+
+The streamgage dataset variables include:
+Date and Time - the date and time of measurement, in mm/dd/yyyy hh:mm format
+Stage Height - the stage height in meters relative to stream bed, in meters
+NAVD88 Height - the stage height in meters relative to North American Vertical Datum of 1988
+
 \newpage
 
 # Data Wrangling
+
 The datasets downloaded included many columns that were not useful for this analysis. For the sediment load dataset, the date column was reclassified as a date, then the useful columns were selected and renamed. The Date column in the Stream Gage dataset included a date and time, so those pieces were extracted into separate columns and the Date was reclassified. Measurements that were flagged as Bad, Buried, or Noisy were removed. Next, an average stage height measurement for each day was calculated. With these wrangling steps complete, the datasets are ready for initial visualizations. 
 
 \newpage
@@ -231,9 +270,97 @@ SeasonalMannKendall(sediment_discharge.ts)
 ```
 A seasonal Mann-Kendall test was performed on the data which produced a tau value of 0.69 and a p-value of < 2.22e-16. These results indicate a statistically significant increasing trend in total sediment discharge in the Elwha River during and after dam removal. 
 
-## Question 3: Comparison of distributions?
+## Question 5: How does sediment discharge compare before, during, and after dam removal in the Elwha River? 
 
+Tp compare sediment discharge before, during, and after dam removal in the Elwha River we will use 
+a Welch Two Sample T-test because we want to compare the means of two independent groups (years). We chose to 
+use a Welch's T-test because we are assuming that both groups are sampled from populations that are
+normally distributed, but we are not assuming the populations have the same variance. This is a more robust test
+than a Student's T-test. This test can help us figure out if the differences we see in sediment discharge
+are real or just due to chance.
 
+###Comparing 2013 to 2015
+
+First, plotting sediment over time to decide which years to compare. 
+```{r t-test one, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+#plot sediment over time to decide which years to compare
+ggplot(elwha_sediment, aes(x = Date, y = Total_Sed_discharge)) +
+  geom_line() +
+  labs(y = 'Total Sediment Discharge (tonnes)') +
+  ggtitle('Total Sediment Discharge  Over Time')
+
+#based on this graph we will choose 2013 vs 2015 
+#this will give us an idea of sediment discharge during versus after the removal 
+
+#select data from only 2013 and 2015, add Year as a column
+elwha_sediment_1315 <- elwha_sediment %>% 
+  mutate(Year = year(Date)) %>%
+  filter(Year == 2013 | Year == 2015)
+
+#now view 2013 and 2015 as a factor 
+ggplot(elwha_sediment_1315, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
+  geom_freqpoly()  +
+  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)') +
+  ggtitle('Total Sediment Discharge Frequency in 2013 and 2015')
+
+#Continuous dependent variable: Sediment Discharge 
+#Categorical variable with two levels (2013 and 2015)
+#run two sample t-test between 2013 and 2015
+twosample_test_13to15 <- t.test(elwha_sediment_1315$Total_Sed_discharge ~ elwha_sediment_1315$Year)
+print(twosample_test_13to15)
+
+```
+The Welch Two Sample t-test comparing 2013 to 2015 has a t statistic of 3.0328, 
+671.4 degrees of freedom, and a p-value = 0.002516. This means that based on a 95% confidence 
+interval, there is a statistical difference in the mean sediment discharge between 2013 and 2015, with 
+2013 having the greater mean. 
+
+### Comparing 2012 to 2015
+```{r t-test two, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+#test other years to understand the comparison better  
+
+#select data from only 2012 and 2015, add Year as a column
+elwha_sediment_1215 <- elwha_sediment %>% 
+  mutate(Year = year(Date)) %>%
+  filter(Year == 2012 | Year == 2015)
+
+#now view
+ggplot(elwha_sediment_1215, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
+  geom_freqpoly() +
+  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)') +
+  ggtitle('Total Sediment Discharge Frequency in 2012 and 2015')
+
+#run t-test
+twosample_test_12to15 <- t.test(elwha_sediment_1215$Total_Sed_discharge ~ elwha_sediment_1215$Year)
+print(twosample_test_12to15)
+
+```
+The Welch Two Sample t-test comparing 2012 to 2015 has a t statistic of 1.6112, 
+693.88 degrees of freedom, and a p-value = 0.1076. This means that based on a 95% confidence 
+interval, there is not a statistical difference in the mean sediment discharge between 2012 and 2015.
+
+### Comparing 2011 to 2016
+```{r t-test three, echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+#now compare before and after dam removals, from first and last year of dataset
+#select data from only 2011 and 2016, add Year as a column
+elwha_sediment_1116 <- elwha_sediment %>% 
+  mutate(Year = year(Date)) %>%
+  filter(Year == 2011 | Year == 2016)
+
+#now view
+ggplot(elwha_sediment_1116, aes(x = Total_Sed_discharge, color = as.factor(Year))) +
+  geom_freqpoly() +
+  labs(y = 'Frequency', x = 'Total Sediment Discharge (tonnes)') +
+  ggtitle('Total Sediment Discharge Frequency in 2011 and 2016')
+
+#run t-test
+twosample_test_11to16 <- t.test(elwha_sediment_1116$Total_Sed_discharge ~ elwha_sediment_1116$Year)
+print(twosample_test_11to16)
+
+```
+The Welch Two Sample t-test comparing 2011 to 2016 has a t statistic of 0.081339,, 
+317.18 degrees of freedom, and a p-value = 0.9352. This means that based on a 95% confidence 
+interval, there is not a statistical difference in the mean sediment discharge between 2011 and 2016.
 
 
 \newpage
@@ -244,4 +371,7 @@ A seasonal Mann-Kendall test was performed on the data which produced a tau valu
 \newpage
 
 # References
-<add references here if relevant, otherwise delete this section> 
+
+“History of the Elwha.” National Parks Service, U.S. Department of the Interior, 2 Oct. 2019, www.nps.gov/olym/learn/nature/history-of-the-elwha.htm. 
+
+“USGS Science Supporting the Elwha River Restoration Project.” U.S. Geological Survey, 3 Nov. 2020, www.usgs.gov/centers/pcmsc/science/usgs-science-supporting-elwha-river-restoration-project. 
