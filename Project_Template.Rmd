@@ -8,7 +8,14 @@ geometry: margin=2.54cm
 
 \tableofcontents 
 \newpage
-\listoftables 
+## List of Tables
+  1. **Table 1**: Sediment Loads Data Summary Statistics 
+  2. **Table 2**: Regression Results for Daily Discharge Over Time
+  3. **Table 3**: Streamgage Data Summary Statistics
+  4. **Table 4**: Regression Results for Stage Height Over Time
+  5. **Table 5**: Regression Results for Total SS vs Discharge
+  6. **Table 6**: Regression Results for Fine Fraction vs Discharge
+  7. **Table 7**: Regression Results for Sand Fraction vs Discharge
 \newpage
 \listoffigures 
 \newpage
@@ -24,6 +31,7 @@ library(Kendall)
 library(tseries)
 library(zoo)
 library(knitr)
+library(cowplot)
 library(here)
 
 # Set your working directory
@@ -122,13 +130,16 @@ sed_summary <- summary(elwha_sediment)
 | Ungauged Bedload (tonnes)               | -7710     | 139      | 1976     | 104444     |
 | Total Sediment Discharge (tonnes) | 0.1       | 779.8    | 9886.9   | 466989.1   |
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '1'}
+
+
+Summary Statistics for the Sediment Data
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= 'Daily Discharge over Time'}
 exp_discharge <- ggplot(elwha_sediment, aes(x=Date, y = Discharge))+
   geom_point()+
   geom_smooth(method = "lm")+
   labs(x = 'Date', 
-       y = expression("Daily Discharge (" ~ m^3/s ~ ")"))+
-  ggtitle('Daily Discharge over Time')
+       y = expression("Daily Discharge (" ~ m^3/s ~ ")"))
 exp_discharge
 
 dischargebydate.regression <- lm(data = elwha_sediment, Discharge ~ Date)
@@ -145,7 +156,7 @@ dischbydate_reg <- summary(dischargebydate.regression)
 | **R-squared** |            |            |         | 0.001746     |
 | **Adj R-squared** |        |            |         | 0.001204     |
 
-Discharge shows strong seasonal trends, with an insignificant slight decrease over time (p value = 0.072918). Seasonal trends appear to become stronger with time. Time series analysis will remove seasonal trends in the data and reveal changes before and after dam removal
+Discharge shows strong seasonal trends, with an insignificant slight decrease over time (p value = 0.072918). Seasonal trends appear to become stronger with time. Time series analysis will remove seasonal trends in the data and reveal changes before and after dam removal.
 
 ### Exploratory Analysis: Streamgage Data
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
@@ -157,12 +168,16 @@ summary_stream <- summary(elwha_stream)
 | Date              | 2011-10-17 | 2013-11-27 | 2013-12-11 | 2016-05-11 |
 | Average Stage Height (m)  | 0.1608     | 0.9752     | 0.9908     | 2.6560     |
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '2'}
+
+Summary Statistics for the Streamgage Data
+
+
+\newpage
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= 'Average Stage Height Over Time'}
 exp_gage_ht <- ggplot(elwha_stream, aes(x=Date, y = Avg_Stage_Height))+
   geom_point()+
   geom_smooth(method = "lm")+
-  labs(y = 'Average Stage Height (m)')+
-  ggtitle('Average Stage Height Over Time')
+  labs(y = 'Average Stage Height (m)')
 exp_gage_ht
 
 stagebydate.regression <- lm(data = elwha_stream, Avg_Stage_Height ~ Date)
@@ -187,13 +202,12 @@ Time series analysis will remove seasonal trends and reveal changes before and a
 
 ## Question 1: What is the correlation between sediment and water discharge in the Elwha River during the dam removal?
 
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '3'}
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= 'Total SS vs Discharge'}
 totalsed_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Suspended_sed_load_t))+
   geom_line()+
   geom_smooth(method = "lm")+
   labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
-       y = 'Total Suspended Sediment Load (tonnes)')+
-  ggtitle('Total SS vs Discharge')
+       y = 'Total Suspended Sediment Load (tonnes)')
 
 totalsed_discharge
 
@@ -212,23 +226,45 @@ dischargebydate_totalsummary <- summary(dischargebydate.regression)
 | **R-squared** |            |            |         | 0.5561        |
 | **Adj R-squared** |        |            |         | 0.5559        |
 
+Daily discharge has a significant positive correlation with suspended sediment load (p<2e-16). As daily discharge increases, we can expect to see increases in suspended sediment loads. 
+
+\newpage
+
 ## Question 2: How does the trend of streamflow overtime relate to the trend of sediment discharge?
-```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= '4'}
-fine_fraction_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Avg_fraction_fines))+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= 'Fine and Sand SS Fraction vs Discharge'}
+ss_fractions <- elwha_sediment %>% 
+  mutate(
+    SS_fine_fract = Avg_fraction_fines, 
+    SS_sand_fract = SS_load_sand_t / Suspended_sed_load_t
+  )
+
+fine_fraction_discharge <- ggplot(ss_fractions, aes(x=Discharge, y = SS_fine_fract))+
   geom_line()+
   geom_smooth(method = "lm")+
   labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
-       y = 'Average Fine Sediment Fraction')+
-  ggtitle('Fine SS Fraction vs Discharge')
+       y = 'Average Fine Sediment Fraction')
 
-fine_fraction_discharge
+sand_fraction_discharge <- ggplot(ss_fractions, aes(x=Discharge, y = SS_sand_fract))+
+  geom_line()+
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Average Sand Fraction')
 
-dischargebydate.finesregression <- lm(data = elwha_sediment, Avg_fraction_fines  ~ Discharge)
-dischargebydate_finessummary <- summary(dischargebydate.regression)
+combined_fract_plots <- plot_grid(fine_fraction_discharge, sand_fraction_discharge)
+combined_fract_plots
+
+dischargebydate.finesregression <- lm(data = ss_fractions, SS_fine_fract  ~ Discharge)
+dischargebydate_finessummary <- summary(dischargebydate.finesregression)
 #significant relation, R2 = 0.16
+
+dischargebydate.sandregression <- lm(data = ss_fractions, SS_sand_fract  ~ Discharge)
+dischargebydate_sandsummary <- summary(dischargebydate.sandregression)
 
 
 ```
+
+\newpage
+Regression Summary of the Impact of Discharge on Fine SS Fraction
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
 |---------------|------------|------------|---------|---------------|
@@ -236,6 +272,17 @@ dischargebydate_finessummary <- summary(dischargebydate.regression)
 | **Discharge** | -1.165e-03 | 6.014e-05  | -19.36  | <2e-16 ***    |
 | **R-squared** |            |            |         | 0.1699        |
 | **Adj R-squared** |        |            |         | 0.1695        |
+
+Regression Summary of the Impact of Discharge on Sand SS Fraction
+
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|---------------|
+| **Intercept** | 2.563e-01  | 3.804e-03  | 67.37  | <2e-16 ***    |
+| **Discharge** | 1.154e-03 | 6.191e-05  | 18.64  | <2e-16 ***    |
+| **R-squared** |            |            |         | 0.1588        |
+| **Adj R-squared** |        |            |         | 0.1583        |
+
+Increasing daily discharge has a significant negative correlation with the proportion of fine sediments in the total SS load (p<2e-16) and a significant positive correlation (p<2e-16) with the proportion of sand in the total SS load. 
 
 ## Question 3: What is the trend of stream discharge and gage height overtime in the Elwha River during and after dam removal?
 

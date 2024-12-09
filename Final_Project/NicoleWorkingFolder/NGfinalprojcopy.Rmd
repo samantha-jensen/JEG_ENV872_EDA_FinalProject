@@ -1,0 +1,213 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+\listoftables
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+# Load your packages
+library(ggplot2)
+library(dbplyr)
+library(tidyverse)
+library(lubridate)
+library(Kendall)
+library(tseries)
+library(zoo)
+library(knitr)
+library(cowplot)
+library(here)
+here()
+
+# Set your ggplot theme
+```
+
+
+
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+# Load your datasets
+elwha_stream <- read.csv(here("Final_Project/Data/Processed/Elwa_Stream_Wrangled.csv"))
+elwha_stream$Date <- as.Date(elwha_stream$Date, format = "%Y-%m-%d")
+#glimpse(elwha_stream)
+
+elwha_sediment <- read.csv(here("Final_Project/Data/Processed/Elwa_Sediment_Wrangled.csv"))
+elwha_sediment$Date <- as.Date(elwha_sediment$Date, format = "%Y-%m-%d")
+#glimpse(Elwha_stream)
+
+```
+
+# Rationale and Research Questions
+
+
+
+\newpage
+
+# Dataset Information
+
+\newpage
+
+# Exploratory Analysis 
+
+### Exploratory Analysis: Sediment Loads Data
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+sed_summary <- summary(elwha_sediment)
+
+```
+
+| Variable                  | Minimum      | Median   | Mean     | Maximum       |
+|---------------------------|-----------|----------|----------|------------|
+| Date                      | 2011-09-15 | 2014-03-24 | 2014-03-24 | 2016-09-30 |
+| Discharge m<sup>3</sup>/s | 6.33      | 41.70    | 47.70    | 399.50     |
+| Suspended Sediment Concentration (mg/L) | 0.227     | 169.500  | 945.363  | 13819.790  |
+| Average Fine SS Fraction  | 0.4100    | 0.6850   | 0.6896   | 0.9940     |
+| Total SS Load (tonnes)      | 0.1       | 634.4    | 7750.9   | 429806.7   |
+| Fine SS Load (tonnes)           | 0.1       | 457.9    | 4533.7   | 269484.4   |
+| Sand SS Load (tonnes)            | 0.00      | 186.70   | 3217.18  | 160322.30  |
+| Ungauged Bedload (tonnes)               | -7710     | 139      | 1976     | 104444     |
+| Total Sediment Discharge (tonnes) | 0.1       | 779.8    | 9886.9   | 466989.1   |
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+exp_discharge <- ggplot(elwha_sediment, aes(x=Date, y = Discharge))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs(x = 'Date', 
+       y = expression("Daily Discharge (" ~ m^3/s ~ ")"))+
+  ggtitle('Daily Discharge over Time')
+exp_discharge
+
+dischargebydate.regression <- lm(data = elwha_sediment, Discharge ~ Date)
+dischbydate_reg <- summary(dischargebydate.regression)
+
+```
+
+
+
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|-------------|
+| **Intercept** | 96.818629  | 27.387137  | 3.535   | 0.000418 *** |
+| **Date**      | -0.003041  | 0.001695   | -1.794  | 0.072918 .   |
+| **R-squared** |            |            |         | 0.001746     |
+| **Adj R-squared** |        |            |         | 0.001204     |
+
+Discharge shows strong seasonal trends, with an insignificant slight decrease over time (p value = 0.072918). Seasonal trends appear to become stronger with time. Time series analysis will remove seasonal trends in the data and reveal changes before and after dam removal
+
+### Exploratory Analysis: Streamgage Data
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+summary_stream <- summary(elwha_stream)
+
+```
+| Variable          | Minimum       | Median     | Mean       | Maximum     |
+|--------------------|------------|------------|------------|------------|
+| Date              | 2011-10-17 | 2013-11-27 | 2013-12-11 | 2016-05-11 |
+| Average Stage Height (m)  | 0.1608     | 0.9752     | 0.9908     | 2.6560     |
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+exp_gage_ht <- ggplot(elwha_stream, aes(x=Date, y = Avg_Stage_Height))+
+  geom_point()+
+  geom_smooth(method = "lm")+
+  labs(y = 'Average Stage Height (m)')+
+  ggtitle('Average Stage Height Over Time')
+exp_gage_ht
+
+stagebydate.regression <- lm(data = elwha_stream, Avg_Stage_Height ~ Date)
+stagebydate_summary<- summary(stagebydate.regression)
+```
+
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|---------------|
+| **Intercept** | -5.493e+00 | 2.753e-01  | -19.95  | <2e-16 ***    |
+| **Date**      | 4.040e-04  | 1.715e-05  | 23.56   | <2e-16 ***    |
+| **R-squared** |            |            |         | 0.2646        |
+| **Adj R-squared** |        |            |         | 0.2641        |
+\\caption{stage table}
+
+Stage height shows strong seasonal trends, with a significant increase over time (p value <2e-16)
+Time series analysis will remove seasonal trends and reveal changes before and after dam removal. 
+
+
+\newpage
+
+# Analysis
+
+
+## Question 1: How Does Are Daily Water and Sediment Discharges Related?
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+totalsed_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Suspended_sed_load_t))+
+  geom_line()+
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Total Suspended Sediment Load (tonnes)')+
+  ggtitle('Total SS vs Discharge')
+
+totalsed_discharge
+
+dischargebydate.totalregression <- lm(data = elwha_sediment,Suspended_sed_load_t  ~ Discharge)
+dischargebydate_totalsummary <- summary(dischargebydate.regression)
+#significant relation, R2 = 0.56
+
+
+
+```
+
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|---------------|
+| **Intercept** | -16278.35  | 644.40     | -25.26  | <2e-16 ***    |
+| **Discharge** | 503.73     | 10.49      | 48.03   | <2e-16 ***    |
+| **R-squared** |            |            |         | 0.5561        |
+| **Adj R-squared** |        |            |         | 0.5559        |
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+fine_fraction_discharge <- ggplot(elwha_sediment, aes(x=Discharge, y = Avg_fraction_fines))+
+  geom_line()+
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Average Fine Sediment Fraction')+
+  ggtitle('Fine SS Fraction vs Discharge')
+
+fine_fraction_discharge
+
+dischargebydate.finesregression <- lm(data = elwha_sediment, Avg_fraction_fines  ~ Discharge)
+dischargebydate_finessummary <- summary(dischargebydate.regression)
+#significant relation, R2 = 0.16
+
+
+```
+
+|               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
+|---------------|------------|------------|---------|---------------|
+| **Intercept** | 7.451e-01  | 3.693e-03  | 201.73  | <2e-16 ***    |
+| **Discharge** | -1.165e-03 | 6.014e-05  | -19.36  | <2e-16 ***    |
+| **R-squared** |            |            |         | 0.1699        |
+| **Adj R-squared** |        |            |         | 0.1695        |
+
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE}
+
+ss_fractions <- elwha_sediment %>% 
+  mutate(
+    SS_fine_fract = Avg_fraction_fines, 
+    SS_sand_fract = SS_load_sand_t / Suspended_sed_load_t
+  )
+
+fine_fraction_discharge <- ggplot(ss_fractions, aes(x=Discharge, y = SS_fine_fract))+
+  geom_line()+
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Average Fine Sediment Fraction')+
+  ggtitle('Fine SS Fraction vs Discharge')
+
+sand_fraction_discharge <- ggplot(ss_fractions, aes(x=Discharge, y = SS_sand_fract))+
+  geom_line()+
+  geom_smooth(method = "lm")+
+  labs(x = expression("Daily Discharge (" ~ m^3/s ~ ")"), 
+       y = 'Average Sand Fraction')+
+  ggtitle('Sand SS Fraction vs Discharge')
+
+combined_fract_plots <- plot_grid(fine_fraction_discharge, sand_fraction_discharge)
+combined_fract_plots
+
+
+```
+
