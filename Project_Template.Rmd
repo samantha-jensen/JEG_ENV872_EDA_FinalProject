@@ -131,8 +131,7 @@ sed_summary <- summary(elwha_sediment)
 | Total Sediment Discharge (tonnes) | 0.1       | 779.8    | 9886.9   | 466989.1   |
 
 
-
-Summary Statistics for the Sediment Data
+Table 1: Summary Statistics for the Sediment Data
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE, error = FALSE, fig.align='center', fig.cap= 'Daily Discharge over Time'}
 exp_discharge <- ggplot(elwha_sediment, aes(x=Date, y = Discharge))+
@@ -147,7 +146,8 @@ dischbydate_reg <- summary(dischargebydate.regression)
 
 ```
 
-
+Table 2: Regression Results for Daily Discharge Over Time
+  
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
 |---------------|------------|------------|---------|-------------|
@@ -169,7 +169,7 @@ summary_stream <- summary(elwha_stream)
 | Average Stage Height (m)  | 0.1608     | 0.9752     | 0.9908     | 2.6560     |
 
 
-Summary Statistics for the Streamgage Data
+Table 3: Streamgage Data Summary Statistics
 
 
 \newpage
@@ -183,6 +183,9 @@ exp_gage_ht
 stagebydate.regression <- lm(data = elwha_stream, Avg_Stage_Height ~ Date)
 stagebydate_summary<- summary(stagebydate.regression)
 ```
+
+Table 4: Regression Results for Stage Height Over Time
+
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
 |---------------|------------|------------|---------|---------------|
@@ -218,6 +221,10 @@ dischargebydate_totalsummary <- summary(dischargebydate.regression)
 
 
 ```
+
+
+ Table 5. Regression Results for Total SS vs Discharge
+
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
 |---------------|------------|------------|---------|---------------|
@@ -264,7 +271,8 @@ dischargebydate_sandsummary <- summary(dischargebydate.sandregression)
 ```
 
 \newpage
-Regression Summary of the Impact of Discharge on Fine SS Fraction
+Table 6. Regression Results for Fine Fraction vs Discharge
+  
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
 |---------------|------------|------------|---------|---------------|
@@ -273,7 +281,7 @@ Regression Summary of the Impact of Discharge on Fine SS Fraction
 | **R-squared** |            |            |         | 0.1699        |
 | **Adj R-squared** |        |            |         | 0.1695        |
 
-Regression Summary of the Impact of Discharge on Sand SS Fraction
+Table 7. Regression Results for Sand Fraction vs Discharge
 
 |               | Estimate   | Std. Error | t value | `Pr(>|t|)`    |
 |---------------|------------|------------|---------|---------------|
@@ -432,7 +440,7 @@ interval, there is not a statistical difference in the mean sediment discharge b
 
 # Summary and Conclusions
 
-In summary, we were able to better understand the short-term impacts of two dam removals on the Elwha River with sediment and stream gage data. The removal of the Elwha Dam led to an increase in stream discharge(Figure ) as well as total sediment discharge(Figure). Over time the average daily stream gage height increased indicating rising water levels after the removal of the Elwha Dam(Figure ). Increased water discharge was positively correlated with total sediment discharge (Figure). Looking at the types of suspended sediment being discharged, as discharge increased the proportion of fine particles decreased (Figure), while sand proportions increased (Figure). This indicates that greater discharge magnitudes were able to suspend and carry larger particles. These particle distributions are important to consider in future investigations of water quality impacts due to suspended sediments. Sediment discharge somewhat changed before, during, and after dam removal in the Elwha River. There was a statistical difference in sediment discharge between 2013 and 2015 (Figure), but not a significant difference in sediment discharge between 2012 and 2015 (Figure) and 2011 and 2016 (Figure). 
+In summary, we were able to better understand the short-term impacts of two dam removals on the Elwha River with sediment and stream gage data. The removal of the Elwha Dam led to an increase in stream discharge (Figure 1) as well as total sediment discharge (Figure 3). Over time the average daily stream gage height increased indicating rising water levels after the removal of the Elwha Dam (Figure 2). Increased water discharge was positively correlated with total sediment discharge (Figure 3). Looking at the types of suspended sediment being discharged, as discharge increased the proportion of fine particles decreased, while sand proportions increased (Figure 4). This indicates that greater discharge magnitudes were able to suspend and carry larger particles. These particle distributions are important to consider in future investigations of water quality impacts due to suspended sediments. Sediment discharge somewhat changed before, during, and after dam removal in the Elwha River. There was a statistical difference in sediment discharge between 2013 and 2015 (Figure 10), but not a significant difference in sediment discharge between 2012 and 2015 (Figure 11) and 2011 and 2016 (Figure 12). 
 
 The main limitation of these datasets are that they do not include data from long before the dams were removed or long after. The first dam was removed in 2011, when the datasets begin, and the second dam was removed in 2014. Only two years of data after the removals is not sufficient to understand long-term impacts of the dam removal, but we can try to understand short term impacts. In addition, we are unable to accurately compare environmental parameters before and after dam removal because we do not have sufficient data before the removals. Looking forward, it could be beneficial to continue monitoring the Elwha River to understand the long-term impacts of dam removal. Scientists can also conduct further analyses to understand habitat destruction or reintroduction, based on turbidity and other water quality parameters in the Elwha. 
 
